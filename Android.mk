@@ -1,27 +1,33 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
+touchui_local_path := $(LOCAL_PATH)
 
 LOCAL_SRC_FILES := \
-	main.cpp
+    threads/Thread.cpp \
+    threads/RedrawThread.cpp \
+    threads/EventThread.cpp \
+    events/KeyEvent.cpp \
+    events/TouchEvent.cpp \
+    views/View.cpp \
+    views/ViewGroup.cpp \
+    views/AbsoluteLayout.cpp \
+    Context.cpp \
+    UiMain.cpp \
+    Activity.cpp \
+    Canvas.cpp \
+    Color.cpp \
+    Image.cpp
     
-LOCAL_STATIC_LIBRARIES := libminui_fonttest libpixelflinger_static libpng libz libft2
-LOCAL_STATIC_LIBRARIES += libstdc++ libc libcutils libm
 
-LOCAL_C_INCLUDES +=\
-    external/libpng \
-    external/zlib \
-    external/libtouchui \
-    external/freetype/include
-
-LOCAL_MODULE := fonttest
+LOCAL_MODULE := libtouchui
 LOCAL_MODULE_TAGS := optional
-LOCAL_FORCE_STATIC_EXECUTABLE := true
 
-include $(BUILD_EXECUTABLE)
+include $(LOCAL_PATH)/libtouchui.mk
+include $(BUILD_STATIC_LIBRARY)
 
 
 #####################################
 # Include minui
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
+include $(call all-makefiles-under,$(touchui_local_path))
 

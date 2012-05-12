@@ -20,7 +20,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <linux/fb.h>
-#include <pixelflinger/pixelflinger.h>
 
 #if defined(PIXELS_BGRA)
 # define PIXEL_FORMAT GGL_PIXEL_FORMAT_BGRA_8888
@@ -62,7 +61,6 @@ void gr_font_size(int *x, int *y);
 void gr_blit(gr_surface source, int sx, int sy, int w, int h, int dx, int dy);
 unsigned int gr_get_width(gr_surface surface);
 unsigned int gr_get_height(gr_surface surface);
-GGLSurface* gr_get_surface();
 
 
 // input event structure, include <linux/input.h> for the definition.
