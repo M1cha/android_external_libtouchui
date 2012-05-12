@@ -15,7 +15,8 @@ LOCAL_SRC_FILES := \
     UiMain.cpp \
     Activity.cpp \
     Canvas.cpp \
-    Color.cpp
+    Color.cpp \
+    Image.cpp
     
 
 LOCAL_MODULE := libtouchui

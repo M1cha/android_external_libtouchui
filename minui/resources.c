@@ -44,9 +44,7 @@ int res_create_surface(const char* name, gr_surface* pSurface) {
     png_structp png_ptr = NULL;
     png_infop info_ptr = NULL;
 
-    snprintf(resPath, sizeof(resPath)-1, RES_IMAGES_FOLDER "/%s.png", name);
-    resPath[sizeof(resPath)-1] = '\0';
-    FILE* fp = fopen(resPath, "rb");
+    FILE* fp = fopen(name, "rb");
     if (fp == NULL) {
         result = -1;
         goto exit;

@@ -37,6 +37,16 @@ void TouchUi::Canvas::drawCanvas(Canvas *c, int x, int y) {
 	gl->recti(gl, x, y, x + c->getWidth(), y + c->getHeight());
 }
 
+void TouchUi::Canvas::drawImage(Image *img, int x, int y) {
+	gl->bindTexture(this->gl, img->getSurface());
+	gl->texEnvi(gl, GGL_TEXTURE_ENV, GGL_TEXTURE_ENV_MODE, GGL_REPLACE);
+	gl->texGeni(gl, GGL_S, GGL_TEXTURE_GEN_MODE, GGL_ONE_TO_ONE);
+	gl->texGeni(gl, GGL_T, GGL_TEXTURE_GEN_MODE, GGL_ONE_TO_ONE);
+	gl->enable(gl, GGL_TEXTURE_2D);
+	gl->texCoord2i(gl, 0 - x, 0 - y);
+	gl->recti(gl, x, y, x + img->getWidth(), y + img->getHeight());
+}
+
 void TouchUi::Canvas::setColor(struct Color* c) {
 	this->gl->color4xv(this->gl, c->color);
 }
