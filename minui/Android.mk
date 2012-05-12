@@ -14,10 +14,12 @@ endif
 
 LOCAL_C_INCLUDES +=\
     external/libpng\
-    external/zlib
+    external/zlib \
+    external/freetype/include
 
-LOCAL_MODULE := libminui_touchui
+LOCAL_MODULE := libminui_fonttest
 LOCAL_MODULE_TAGS := eng debug
+LOCAL_STATIC_LIBRARIES += libft2
 
 # Defy use this :
 ifeq ($(TARGET_RECOVERY_PIXEL_FORMAT),"BGRA_8888")

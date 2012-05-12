@@ -556,3 +556,6 @@ void gr_fb_blank(bool blank)
         perror("ioctl(): blank");
 }
 
+GGLSurface* gr_get_surface() {
+	return &gr_mem_surface;
+}
