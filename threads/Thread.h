@@ -23,10 +23,10 @@ public:
 	Thread();
 	virtual ~Thread();
 	virtual void run();
-	int start();
-	void stop();
-	void join();
-	bool requestedExit();
+	virtual int start();
+	virtual void stop();
+	virtual void join();
+	virtual bool requestedExit();
 private:
 	pthread_t _thread;
 };

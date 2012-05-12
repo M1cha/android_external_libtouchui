@@ -32,7 +32,7 @@ void TouchUi::RedrawThread::run() {
 		// draw activities
 		std::list<Activity*>* activities = this->context->getUiMain()->getActivities();
 		for(std::list<Activity*>::iterator it = activities->begin(); it != activities->end(); it++) {
-			Canvas c(200, 100);
+			Canvas c(gr_fb_width(), gr_fb_height());
 			(*it)->onDraw(&c);
 			gr_blit(c.getSurface(), 0,0, c.getWidth(),c.getHeight(), 0,0);
 		}

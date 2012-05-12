@@ -23,6 +23,7 @@ public:
 	void setColor(struct Color* c);
 	GGLSurface* getSurface();
 	void drawRect(int left, int top, int right, int bottom);
+	void drawCanvas(Canvas *c, int x, int y);
 	int getWidth();
 	int getHeight();
 private:

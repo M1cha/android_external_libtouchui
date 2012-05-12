@@ -9,11 +9,12 @@
 #define ACTIVITY_H_
 
 #include "Context.h"
-#include "View.h"
+#include "views/View.h"
 #include "Color.h"
 #include "Canvas.h"
 #include <list>
 #include <stdio.h>
+#include "pthread.h"
 
 namespace TouchUi {
 
@@ -21,12 +22,14 @@ class Activity : public Context {
 public:
 	Activity();
 	virtual ~Activity();
-	void onLoad();
-	void onUnload();
-	void addView(View *v);
+	virtual void onLoad();
+	virtual void onUnload();
+	virtual void setContentView(View *v);
+	virtual View* getContentView();
 	virtual void onDraw(Canvas *c);
 private:
-	std::list<View*> _views;
+	View* _contentview;
+	pthread_mutex_t lock_mutex;
 };
 
 } /* namespace TouchUi */

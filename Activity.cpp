@@ -9,11 +9,11 @@
 
 
 TouchUi::Activity::Activity() {
-	printf("Activity()\n");fflush(stdout);
+	this->_contentview = NULL;
+	this->lock_mutex = PTHREAD_MUTEX_INITIALIZER;
 }
 
 TouchUi::Activity::~Activity() {
-	printf("~Activity()\n");fflush(stdout);
 }
 
 void TouchUi::Activity::onLoad() {
@@ -24,22 +24,20 @@ void TouchUi::Activity::onUnload() {
 
 }
 
-void TouchUi::Activity::addView(View *v) {
-	std::list<View*>::iterator pos;
-	pos = find(this->_views.begin(), this->_views.end(), v);
+void TouchUi::Activity::setContentView(View *v) {
+	pthread_mutex_lock(&this->lock_mutex);
+	this->_contentview = v;
+	pthread_mutex_unlock(&this->lock_mutex);
+}
 
-	// element is not in list
-	if(pos==this->_views.end()) {
-		this->_views.push_back(v);
-		v->setParent(this);
-		v->onLoad();
-	}
+TouchUi::View* TouchUi::Activity::getContentView() {
+	return this->_contentview;
 }
 
 void TouchUi::Activity::onDraw(Canvas *c) {
-
-
-	struct Color red = Color(255,0,0,255);
-	c->setColor(&red);
-	c->drawRect(0,0,c->getWidth(),c->getHeight());
+	pthread_mutex_lock(&this->lock_mutex);
+	if(this->_contentview!=NULL) {
+		this->_contentview->onDraw(c);
+	}
+	pthread_mutex_unlock(&this->lock_mutex);
 }

@@ -17,10 +17,10 @@ class Context {
 public:
 	Context();
 	virtual ~Context();
-	UiMain* getUiMain();
-	void setParent(Context *c);
-	Context* getParent();
-	bool isUiMain();
+	virtual UiMain* getUiMain();
+	virtual void setParent(Context *c);
+	virtual Context* getParent();
+	virtual bool isUiMain();
 	bool _is_uimain;
 private:
 	Context *_parent;
