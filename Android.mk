@@ -11,6 +11,7 @@ LOCAL_SRC_FILES := \
     views/View.cpp \
     views/ViewGroup.cpp \
     views/AbsoluteLayout.cpp \
+    views/ImageView.cpp \
     Context.cpp \
     UiMain.cpp \
     Activity.cpp \

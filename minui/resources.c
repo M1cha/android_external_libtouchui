@@ -130,13 +130,13 @@ int res_create_surface_png(const char* name, gr_surface* pSurface) {
         png_set_palette_to_rgb(png_ptr);
     }
 
-    int y;
-    if (channels < 4) {
-        for (y = 0; y < (int) height; ++y) {
+    int x;
+    size_t y;
+    if (channels == 3) {
+        for (y = 0; y < height; ++y) {
             unsigned char* pRow = pData + y * stride;
             png_read_row(png_ptr, pRow, NULL);
 
-            int x;
             for(x = width - 1; x >= 0; x--) {
                 int sx = x * 3;
                 int dx = x * 4;
@@ -151,9 +151,19 @@ int res_create_surface_png(const char* name, gr_surface* pSurface) {
             }
         }
     } else {
-        for (y = 0; y < (int) height; ++y) {
+        for (y = 0; y < height; ++y) {
             unsigned char* pRow = pData + y * stride;
             png_read_row(png_ptr, pRow, NULL);
+#ifdef PIXELS_BGRA
+            if (channels == 4) {
+              for (x = width - 1; x >= 0; x--) {
+                 int dx = x * 4;
+                 unsigned char r = pRow[dx];
+                 pRow[dx] = pRow[dx + 2];
+                 pRow[dx + 2] = r;
+              }
+            }
+#endif
         }
     }
 

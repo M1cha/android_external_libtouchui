@@ -30,7 +30,7 @@ void AbsoluteLayout::onDraw(Canvas *c) {
 		(*it)->onDraw(&canvas_view);
 
 		// draw view's canvas on this layout's canvas
-		c->drawCanvas(&canvas_view, 0, 0);
+		c->drawCanvas(&canvas_view, (*it)->getPosX(), (*it)->getPosY());
 	}
 }
 

@@ -26,15 +26,6 @@ void TouchUi::View::onUnload() {
 }
 
 void TouchUi::View::onDraw(Canvas *c) {
-	Color red(255,0,0,255);
-	c->setColor(&red);
-	c->drawRect(0,0,c->getWidth(),c->getHeight());
-
-	Image img("/system/bootmenu/images/background.png");
-	//c->drawImage(&img, 0, 0);
-
-	Image img2("/tmp/fonts/helvetica-big.png");
-	c->drawImage(&img2, 0, 0);
 }
 
 void TouchUi::View::setPosX(int x) {
@@ -51,8 +42,8 @@ int TouchUi::View::getPosY() {
 }
 
 int TouchUi::View::getPreferredWidth() {
-	return gr_fb_width();
+	return 0;
 }
 int TouchUi::View::getPreferredHeight() {
-	return gr_fb_height();
+	return 0;
 }
