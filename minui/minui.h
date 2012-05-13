@@ -78,7 +78,7 @@ int ev_get(struct input_event *ev, unsigned dont_wait);
 
 // Returns 0 if no error, else negative.
 int res_create_surface(const char* name, gr_surface* pSurface);
-void res_free_surface(gr_surface* pSurface);
+void res_free_surface(gr_surface surface);
 
 int gr_fb_test(void);
 

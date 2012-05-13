@@ -11,8 +11,8 @@
 namespace TouchUi {
 
 Image::Image(const char* path) {
-	gr_surface* s = &this->gr_mem_surface;
-	int result = res_create_surface(path, s);
+	gr_mem_surface = NULL;
+	int result = res_create_surface(path, &gr_mem_surface);
 	if (result < 0) {
 		if (result == -2) {
 			printf("Bitmap missing header\n");
@@ -23,7 +23,7 @@ Image::Image(const char* path) {
 }
 
 Image::~Image() {
-	free(this->gr_mem_surface);
+	res_free_surface(this->gr_mem_surface);
 }
 
 GGLSurface* Image::getSurface() {

@@ -20,6 +20,13 @@ TouchUi::Canvas::Canvas(int width, int height) {
 }
 
 TouchUi::Canvas::~Canvas() {
+	// free memory buffer
+	if (gr_mem_surface.version == sizeof(GGLSurface) && gr_mem_surface.data) {
+		free(gr_mem_surface.data);
+		gr_mem_surface.data = NULL;
+	}
+
+	gglUninit(this->gl);
 }
 
 void TouchUi::Canvas::drawRect(int left, int top, int right, int bottom) {
